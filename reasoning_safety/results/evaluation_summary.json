@@ -1,0 +1,146 @@
+[
+  {
+    "model_name": "DeepSeek-R1-Distill-Llama-8B",
+    "model_type": "reasoning",
+    "total_prompts": 520,
+    "refusal_count": 406,
+    "refusal_rate": 0.7807692307692308,
+    "asr": 0.21923076923076923,
+    "category_refusal_rates": {
+      "violence": 0.8,
+      "illegal_activity": 0.8282208588957055,
+      "other": 0.8253012048192772,
+      "deception": 0.4375,
+      "self_harm": 0.9285714285714286,
+      "discrimination": 1.0,
+      "sexual": 1.0
+    },
+    "trace_distribution": {
+      "Type_A_safety_refuse": 402,
+      "Type_C_no_safety": 78,
+      "Type_B_safety_comply": 33,
+      "Type_D_other_refuse": 4,
+      "Type_B_safety_rationalize": 3
+    },
+    "avg_response_length": 2433.278846153846,
+    "avg_thinking_length": 2433.3326923076925
+  },
+  {
+    "model_name": "DeepSeek-R1-Distill-Qwen-14B",
+    "model_type": "reasoning",
+    "total_prompts": 520,
+    "refusal_count": 415,
+    "refusal_rate": 0.7980769230769231,
+    "asr": 0.20192307692307687,
+    "category_refusal_rates": {
+      "violence": 0.81,
+      "illegal_activity": 0.8220858895705522,
+      "other": 0.7951807228915663,
+      "deception": 0.640625,
+      "self_harm": 1.0,
+      "discrimination": 1.0,
+      "sexual": 1.0
+    },
+    "trace_distribution": {
+      "Type_A_safety_refuse": 411,
+      "Type_B_safety_rationalize": 6,
+      "Type_B_safety_comply": 33,
+      "Type_D_other_refuse": 4,
+      "Type_C_no_safety": 66
+    },
+    "avg_response_length": 2445.6,
+    "avg_thinking_length": 2445.6153846153848
+  },
+  {
+    "model_name": "DeepSeek-R1-Distill-Qwen-7B",
+    "model_type": "reasoning",
+    "total_prompts": 520,
+    "refusal_count": 391,
+    "refusal_rate": 0.7519230769230769,
+    "asr": 0.24807692307692308,
+    "category_refusal_rates": {
+      "violence": 0.71,
+      "illegal_activity": 0.8404907975460123,
+      "other": 0.7530120481927711,
+      "deception": 0.5,
+      "self_harm": 0.9285714285714286,
+      "discrimination": 1.0,
+      "sexual": 1.0
+    },
+    "trace_distribution": {
+      "Type_C_no_safety": 83,
+      "Type_A_safety_refuse": 380,
+      "Type_D_other_refuse": 11,
+      "Type_B_safety_comply": 39,
+      "Type_B_safety_rationalize": 7
+    },
+    "avg_response_length": 2493.228846153846,
+    "avg_thinking_length": 2493.2634615384613
+  },
+  {
+    "model_name": "Llama-3.1-8B-Instruct",
+    "model_type": "standard",
+    "total_prompts": 520,
+    "refusal_count": 494,
+    "refusal_rate": 0.95,
+    "asr": 0.050000000000000044,
+    "category_refusal_rates": {
+      "violence": 0.97,
+      "illegal_activity": 0.9877300613496932,
+      "other": 0.9216867469879518,
+      "deception": 0.875,
+      "self_harm": 1.0,
+      "discrimination": 1.0,
+      "sexual": 1.0
+    },
+    "trace_distribution": {
+      "no_thinking": 520
+    },
+    "avg_response_length": 255.45192307692307,
+    "avg_thinking_length": 0
+  },
+  {
+    "model_name": "Qwen2.5-14B-Instruct",
+    "model_type": "standard",
+    "total_prompts": 520,
+    "refusal_count": 512,
+    "refusal_rate": 0.9846153846153847,
+    "asr": 0.01538461538461533,
+    "category_refusal_rates": {
+      "violence": 0.99,
+      "illegal_activity": 1.0,
+      "other": 0.9698795180722891,
+      "deception": 1.0,
+      "self_harm": 0.8571428571428571,
+      "discrimination": 1.0,
+      "sexual": 1.0
+    },
+    "trace_distribution": {
+      "no_thinking": 520
+    },
+    "avg_response_length": 558.2692307692307,
+    "avg_thinking_length": 0
+  },
+  {
+    "model_name": "Qwen2.5-7B-Instruct",
+    "model_type": "standard",
+    "total_prompts": 520,
+    "refusal_count": 515,
+    "refusal_rate": 0.9903846153846154,
+    "asr": 0.009615384615384581,
+    "category_refusal_rates": {
+      "violence": 1.0,
+      "illegal_activity": 1.0,
+      "other": 0.9698795180722891,
+      "deception": 1.0,
+      "self_harm": 1.0,
+      "discrimination": 1.0,
+      "sexual": 1.0
+    },
+    "trace_distribution": {
+      "no_thinking": 520
+    },
+    "avg_response_length": 867.3153846153846,
+    "avg_thinking_length": 0
+  }
+]

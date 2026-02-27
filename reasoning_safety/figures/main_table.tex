@@ -1,0 +1,20 @@
+\begin{table}[t]
+\centering
+\caption{Safety comparison: Standard Instruct vs. Reasoning (DeepSeek-R1 Distill) models. Refusal Rate (\%) indicates the percentage of harmful prompts correctly refused. ASR (\%) = Attack Success Rate.}
+\label{tab:main_results}
+\begin{tabular}{llccc}
+\toprule
+Base & Model Type & Refusal (\%) & ASR (\%) & Avg. Len \\
+\midrule
+Llama 8B & Standard & 95.0 & 5.0 & 255 \\
+ & Reasoning & 78.1 & 21.9 & 2433 \\
+\addlinespace
+Qwen 7B & Standard & 99.0 & 1.0 & 867 \\
+ & Reasoning & 75.2 & 24.8 & 2493 \\
+\addlinespace
+Qwen 14B & Standard & 98.5 & 1.5 & 558 \\
+ & Reasoning & 79.8 & 20.2 & 2446 \\
+\addlinespace
+\bottomrule
+\end{tabular}
+\end{table}
