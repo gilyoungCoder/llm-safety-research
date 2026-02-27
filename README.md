@@ -1,67 +1,96 @@
 # LLM Safety Research
 
-Two research projects on safety alignment in open-source LLMs,
-targeting **ETRI Journal** Special Issue on Trustworthy and Safe AI.
+> Two research papers on safety alignment in open-source LLMs
+> **ETRI Journal** — Special Issue on *Trustworthy and Safe AI* (2026)
+
+---
 
 ## Projects
 
-### [`cross_lingual_safety/`](cross_lingual_safety/)
-**Safety Speaks English: Cross-Lingual Safety Erosion in Open-Source LLMs**
+<table>
+<tr>
+<td width="50%" valign="top">
 
-Bilingual (Korean + Chinese) evaluation of how safety alignment degrades
-across languages. 6 models, 17 conditions, 3 translation engines, 53,040 generations.
+### [cross_lingual_safety/](cross_lingual_safety/)
 
-Key finding: Safety erosion is **language-specific** — Korean triggers severe erosion
-(mean ASR 33.8%) while Chinese remains safe (5.2%), proving it's a per-language
-training coverage problem, not a generic non-English weakness.
+**Safety Speaks English**
+*Cross-Lingual Safety Erosion in Open-Source LLMs*
 
-### [`reasoning_safety/`](reasoning_safety/)
-**Think Before You Refuse: Safety Alignment Gaps in Reasoning Models**
+Bilingual (Korean + Chinese) evaluation across
+**6 models** · **17 conditions** · **3 translation engines**
+→ **53,040 generations**
 
-Evaluation of how reasoning-distilled models (DeepSeek-R1 family) differ
-from standard instruction-tuned models in safety alignment.
-6 models on AdvBench (520 harmful behaviors).
+> Korean prompts cause severe erosion (ASR 33.8%)
+> while Chinese remains safe (5.2%)
+> — safety is a **per-language** training problem.
 
-Key finding: Reasoning models exhibit **self-rationalization** patterns where
-explicit chain-of-thought reasoning can lead to compliance despite safety training.
+<img src="cross_lingual_safety/figures/cross_language_scatter.png" width="100%"/>
+
+</td>
+<td width="50%" valign="top">
+
+### [reasoning_safety/](reasoning_safety/)
+
+**Think Before You Refuse**
+*Safety Alignment Gaps in Reasoning Models*
+
+Standard vs. reasoning-distilled models on
+**6 models** · **3 paired comparisons** · **AdvBench 520**
+→ **3,120 generations**
+
+> Reasoning distillation degrades safety
+> (ASR 2.5% → 22.3%) via
+> **self-rationalization** in chain-of-thought.
+
+<img src="reasoning_safety/figures/fig1_slope.png" width="100%"/>
+
+</td>
+</tr>
+</table>
+
+---
 
 ## Quick Start
 
-Each project follows the same pipeline:
-
 ```bash
-cd cross_lingual_safety/  # or reasoning_safety/
+cd cross_lingual_safety/   # or reasoning_safety/
 
-# 1. Prepare data
-python scripts/prepare_data.py  # if applicable
-
-# 2. Run inference (requires GPUs + vLLM)
+# 1. Run inference (requires GPUs + vLLM)
 bash run_all.sh
 
-# 3. Evaluate + Analyze + Visualize
+# 2. Evaluate → Analyze → Visualize
 python scripts/evaluate.py
 python scripts/analyze.py
 python scripts/visualize.py
 ```
 
-## Structure
+## Repository Structure
 
 ```
-project/
-├── scripts/        # Full pipeline (inference, evaluation, analysis, visualization)
-├── data/           # Benchmark data (AdvBench)
-├── paper/          # LaTeX manuscript
-├── figures/        # Generated figures (PNG + PDF)
-├── results/        # evaluation_summary.json (full results excluded for size)
-└── run_all.sh      # Orchestration script
+├── cross_lingual_safety/
+│   ├── scripts/          # 15 pipeline scripts
+│   ├── data/             # 25 condition-specific prompt files
+│   ├── paper/            # LaTeX manuscript
+│   ├── figures/          # 17 figures (PNG + PDF)
+│   └── results/          # Evaluation summary
+│
+├── reasoning_safety/
+│   ├── scripts/          # 7 pipeline scripts
+│   ├── data/             # AdvBench benchmark
+│   ├── paper/            # LaTeX manuscript
+│   ├── figures/          # 24 figures
+│   └── results/          # Evaluation summary
 ```
 
-> **Note**: Individual model result files (~200MB) are excluded from the repo.
-> Run the inference pipeline to regenerate, or contact the authors.
+> **Note**: Raw model outputs (~225 MB) are excluded for repo size.
+> Run the inference pipeline to regenerate.
 
 ## Tech Stack
 
-- **Inference**: vLLM with greedy decoding on NVIDIA A6000 GPUs
-- **Models**: Llama-3.1-8B, Qwen-2.5-7B/14B, Phi-3-14B, Yi-1.5-9B, InternLM-2.5-7B
-- **Translation**: NLLB-200, Gemini 3.0 Pro, GPT-5.2
-- **Evaluation**: Trilingual keyword-based refusal detection (EN/KO/ZH)
+| Component | Details |
+|-----------|---------|
+| Inference | vLLM, greedy decoding, NVIDIA A6000 48 GB |
+| Models | Llama-3.1-8B, Qwen-2.5-7B/14B, Phi-3-14B, Yi-1.5-9B, InternLM-2.5-7B |
+| Translation | NLLB-200 (600M NMT), Gemini 3.0 Pro, GPT-5.2 |
+| Evaluation | Trilingual keyword refusal detection (EN / KO / ZH) |
+| Benchmark | AdvBench — 520 harmful behaviors, 7 categories |
